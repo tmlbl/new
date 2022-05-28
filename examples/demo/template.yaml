@@ -1,0 +1,13 @@
+version: 1.2.3
+name: new-demo
+vars:
+- name: message
+  type: string
+  prompt: What would you like your message to say?
+- name: color
+  type: string
+  prompt: What color should the message print?
+  choices:
+  - red
+  - green
+  - blue
