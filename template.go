@@ -9,9 +9,18 @@ import (
 )
 
 type Template struct {
-	Version string        `yaml:"version"`
-	Name    string        `yaml:"name"`
-	Vars    []TemplateVar `yaml:"vars"`
+	Version     string        `yaml:"version"`
+	Name        string        `yaml:"name"`
+	Description string        `yaml:"description"`
+	Vars        []TemplateVar `yaml:"vars"`
+}
+
+func NewBlankTemplate() Template {
+	return Template{
+		Version:     "0.0.1",
+		Name:        "my-new-template",
+		Description: "A blank template for you to use",
+	}
 }
 
 type TemplateVar struct {
