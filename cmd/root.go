@@ -28,7 +28,7 @@ var rootCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
-		return nil
+		return inst.Execute(wd)
 	},
 }
 
