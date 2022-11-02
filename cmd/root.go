@@ -32,7 +32,32 @@ var rootCmd = &cobra.Command{
 	},
 }
 
+var repoCmd = &cobra.Command{
+	Use:   "repo",
+	Short: "Manage template repositories",
+}
+
+var repoAddCmd = &cobra.Command{
+	Use:   "add [uri]",
+	Short: "Add a template repository to the local database",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		if len(args) < 1 {
+			return fmt.Errorf("provide at least one argument")
+		}
+		for _, a := range args {
+			err := new.AddRepo(a)
+			if err != nil {
+				return err
+			}
+		}
+		return nil
+	},
+}
+
 func Execute() {
+	repoCmd.AddCommand(repoAddCmd)
+	rootCmd.AddCommand(repoCmd)
+
 	rootCmd.PersistentFlags().String("path", "", "The path...")
 
 	rootCmd.AddCommand(templateCmd)
